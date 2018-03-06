@@ -3,6 +3,7 @@ import time
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
+import numpy as np
 
 from alexnet import AlexNet
 
@@ -13,7 +14,9 @@ batch_size = 128
 with open('./train.p', 'rb') as f:
     data = pickle.load(f)
 
+data['features'], data['labels'] = data['features'][:10000], data['labels'][:10000]
 X_train, X_val, y_train, y_val = train_test_split(data['features'], data['labels'], test_size=0.33, random_state=0)
+nb_classes = len(np.unique(data['labels']))
 
 features = tf.placeholder(tf.float32, (None, 32, 32, 3))
 labels = tf.placeholder(tf.int64, None)
