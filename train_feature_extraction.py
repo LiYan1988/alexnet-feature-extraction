@@ -59,7 +59,7 @@ init = tf.global_variables_initializer()
 
 # TODO: Train and evaluate the feature extraction model.
 epochs = 10
-batch_size = 32
+batch_size = 128
 with tf.Session() as sess:
     sess.run(init)
     
